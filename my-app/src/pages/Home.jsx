@@ -7,14 +7,14 @@ function Home(){
     return (
         <div>
          <Navbar/>
-         <Container maxW="100%" bg="white" h="800px" centerContent pt="50px">
+         <Container maxW="100%" bg="white" h="550px" centerContent pt="50px" >
          <Flex  h="550px" >
          <Box w='600px'  textAlign="left">
            <Text fontSize='50px ' as="b"  color="black">Eat smarte, </Text><br/>
            <Text fontSize='50px' as="b" color="black"> Live better</Text>
            <Text color="black" fontSize='30px'>Track your calories, exercise, </Text>
            <Text color="black" fontSize='30px'> biometrics and health data.</Text>
-           <Button bg="tomato" fontSize='20px' mt="50px" w="300px" h="50px"><Link to="/signup">Sign UP-It's Free!</Link></Button>
+           <Button bgColor="tomato" fontSize='20px' mt="50px" w="300px" h="50px"><Link to="/signup">Sign UP-It's Free!</Link></Button>
            <Text color="black" mt="30px">Already have an account? <span ><Link to="/login">Log in.</Link></span></Text>
          </Box>
          
@@ -28,7 +28,9 @@ function Home(){
 
          </Flex>
          </Container>
-
+        <Container bg="red.100" maxW="100%" h="350px">
+       
+        </Container>
 
         </div>
         
