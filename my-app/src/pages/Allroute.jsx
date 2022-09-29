@@ -3,8 +3,8 @@ import Home from "./Home";
 import Login from "./Login";
 import Signup from "./signup" 
 import Aboute from "./About"
-
-
+import PrivateRoute from "../components/Privateroute";
+import Product from "./Product";
 function Allroute(){
 
 return (
@@ -14,8 +14,8 @@ return (
 <Route path="/login" element={<Login/>}></Route>
 <Route path="/signup" element={<Signup/>}></Route>
 <Route path="/aboute" element={<Aboute/>}></Route>
-
-
+<Route path="/aboute" element={<Aboute/>}></Route>
+<Route path="/product" element={<PrivateRoute> <Product/></PrivateRoute>}></Route>
 
 
 

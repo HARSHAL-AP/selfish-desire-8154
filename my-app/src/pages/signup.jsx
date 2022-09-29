@@ -23,9 +23,43 @@ import {
   Checkbox,
   CheckboxGroup,Link
 } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
+import {useContext,useState,useEffect} from "react"
+
+import {AuthContext} from "../context/Appcontext"
+
+const initialstate={
+
+email:"",
+password:"",
+confirm_password:"",
+
+}
+
+
 
 
 function Signup() {
+  const {Gotohome}=useContext(AuthContext)
+  const [show, setShow] =useState(false)
+  const [user,setuser]=useState(initialstate)
+ const {Users}=useContext(AuthContext)
+ const {setusers}=useContext(AuthContext)
+
+  const handlechange=e=>{
+    const {name,value}=e.target;
+    setuser({...user,[name]:value})
+    
+  }
+  const onSubmit=()=>{
+    
+    setuser([...Users,user])
+    console.log(Users)
+  }
+
+
+
+  const handleClick = () => setShow(!show)
   return (
     <div>
       <Container maxW="100%" h="80px" bg="white" pt="10px">
@@ -34,6 +68,7 @@ function Signup() {
             src="https://cdn1.cronometer.com/2021/landing/cronometer-logo.svg"
             w="250px"
             alt="logo"
+            onClick={Gotohome}
           />
         </Center>
       </Container>
@@ -65,26 +100,40 @@ function Signup() {
             focusBorderColor="black"
             mt="10px"
             borderRadius="none"
+            color="black"
+            name="email"
+            value={user.email}
+            onChange={handlechange}
           />
           <Input
             variant="outline"
             maxW="600px"
             placeholder="Password"
+            type={show ? 'text' : 'password'}
             _placeholder={{ color: "grey" }}
             borderColor="black"
             focusBorderColor="black"
             mt="8px"
             borderRadius="none"
+            color="black"
+            name="password"
+            value={user.password}
+            onChange={handlechange}
           />
           <Input
             variant="outline"
             maxW="600px"
+            type={show ? 'text' : 'password'}
             placeholder="Confirm Password"
             _placeholder={{ color: "grey" }}
             borderColor="black"
             focusBorderColor="black"
             mt="8px"
             borderRadius="none"
+            color="black"
+            name="confirm_password"
+            value={user.confirm_password}
+            onChange={handlechange}
           />
         </Container>
         <Container
@@ -100,10 +149,10 @@ function Signup() {
           </Text>
           <Center color="black" gap="20px" alignContent="center" pt="25px">
             <Text color="black">Sex:</Text>
-            <Radio colorScheme="red" value="1" borderColor="black">
+            <Radio colorScheme="red" value="1" borderColor="black" >
               Radio
             </Radio>
-            <Radio colorScheme="red" value="2" borderColor="black">
+            <Radio colorScheme="red" value="2" borderColor="black" >
               Radio
             </Radio>
           </Center>
@@ -326,7 +375,7 @@ function Signup() {
           </Container>
          
         </Container>
-        <Button maxW="500px" colorScheme='green' mt="50px" >Create Accounte</Button>
+        <Button maxW="500px" colorScheme='green' mt="50px" onClick={onSubmit}>Create Accounte</Button>
 
         <Text color="black" mt="50px">Need Help ?</Text>
         <Text color="red" >Email Suppoprt</Text>
