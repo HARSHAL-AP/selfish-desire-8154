@@ -21,9 +21,9 @@ import {
   NumberIncrementStepper,
   NumberDecrementStepper,
   Checkbox,
-  CheckboxGroup,
+  CheckboxGroup,Link
 } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+
 
 function Signup() {
   return (
@@ -305,14 +305,14 @@ function Signup() {
             <Checkbox color="black" border="black" size='sm'>
               Check All
             </Checkbox> 
-            <Text color="black" fontSize="14px">
+            <Text color="black" fontSize="14px" fontWeight="bold">
               By checking the box below you are indicating you have read and
-              agree to our <Link color="red">Terms of Service</Link>  and  <Link>Privacy Policy.</Link>
+              agree to our <Link color="red">Terms of Service</Link>  and  <Link color="red">Privacy Policy.</Link>
             </Text>
             <Checkbox color="black" border="black" size='sm'>
-              I agree to the cronometer.com Terms of Service
+              I agree to the cronometer.com <Link color="red">Terms of Service.</Link>
             </Checkbox>
-            <Text color="black" fontSize="14px">
+            <Text color="black" fontSize="14px" fontWeight="bold">
               In order to give you the best experience using Cronometer, we need
               certain data permissions. (These are optional and can be updated
               in your settings any time.).
@@ -324,7 +324,12 @@ function Signup() {
               I agree to receive personalized in-app ads.
             </Checkbox>
           </Container>
+         
         </Container>
+        <Button maxW="500px" colorScheme='green' mt="50px" >Create Accounte</Button>
+
+        <Text color="black" mt="50px">Need Help ?</Text>
+        <Text color="red" >Email Suppoprt</Text>
       </Container>
     </div>
   );
