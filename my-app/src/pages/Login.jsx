@@ -27,9 +27,13 @@ import {
     OrderedList,
     UnorderedList,
   } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
+import {useContext,useState,useEffect} from "react"
+
+import {AuthContext} from "../context/Appcontext"
 
 function Login(){
-
+const {Gotohome}=useContext(AuthContext)
 return (
     <div>
        <Container maxW="100%" bg="white" pb="50px"  pt="50px">
@@ -44,34 +48,36 @@ return (
           
         >
             <Center>
-          <Image
+          <Image 
             src="https://cdn1.cronometer.com/2021/landing/cronometer-logo.svg"
             w="250px"
             alt="logo"
+            onClick={Gotohome}
           />
         </Center>
           <Input
             variant="outline"
             maxW="600px"
             placeholder="Email Adress"
-            _placeholder={{ color: "grey" }}
+            _placeholder={{ color: "black" }}
             borderColor="black"
             focusBorderColor="black"
             mt="30px"
-            
+            color="black"
           />
           <Input
             variant="outline"
+            type="password"
             maxW="600px"
             placeholder="Password"
-            _placeholder={{ color: "grey" }}
+            _placeholder={{ color: "black" }}
             borderColor="black"
             focusBorderColor="black"
             mt="8px"
-            
+            color="black"
           />
          <Center textAlign="center" border='1px' h="38px" borderColor='blackAlpha.400' rounded='md' mt="8px" bg="blackAlpha.400"><Text color="black">LOGIN</Text></Center>
-         <Flex mt="30px"><Text color="black">Not a member?<Link color="red" to="/signup"> Sign Up Now</Link></Text></Flex>
+         <Flex mt="30px"><Text color="black">Not a member?<Link color="red" href="/signup"> Sign Up Now</Link></Text></Flex>
 
         </Container>
 
@@ -100,6 +106,7 @@ return (
             src="https://cdn1.cronometer.com/2021/landing/cronometer-logo.svg"
             w="250px"
             alt="logo"
+            onClick={Gotohome}
           /></Center></Box>
           
        
