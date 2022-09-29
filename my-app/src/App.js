@@ -5,7 +5,7 @@ import Allroute from "./pages/Allroute.jsx"
 
 function App() {
   return (
-    <div className="App">
+    <div >
       <Allroute/>
     </div>
   );
