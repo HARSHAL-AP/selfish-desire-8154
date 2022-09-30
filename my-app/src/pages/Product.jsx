@@ -37,6 +37,8 @@ import Pronav from "../components/productpage/Productnav";
 import React, { useState } from "react";
 import ReactCalendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
+import data from "../components/data";
+
 
 function Product() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -78,106 +80,15 @@ function Product() {
       </Tr>
     </Thead>
     <Tbody>
-      <Tr>
-        <Td>Banana, Fresh</Td>
+      {
+      data.map((el)=>(
+        <Tr>
+        <Td>{el.Name}</Td>
         <Td></Td>
         <Td isNumeric>⚡NCCDB</Td>
       </Tr>
-      <Tr>
-        <Td>Chicken Breast, Skin Removed Before Cooking</Td>
-        <Td></Td>
-        <Td isNumeric>⚡NCCDB</Td>
-      </Tr>
-      <Tr>
-        <Td>Olive Oil</Td>
-        <Td></Td>
-        <Td isNumeric>⚡NCCDB</Td>
-      </Tr>
-      <Tr>
-        <Td>Avocado, Black Skin</Td>
-        <Td></Td>
-        <Td isNumeric>⚡NCCDB</Td>
-      </Tr>
-      <Tr>
-        <Td>Cucumber, Raw, With Peel</Td>
-        <Td></Td>
-        <Td isNumeric>⚡NCCDB</Td>
-      </Tr>
-      <Tr>
-        <Td>Apple, Fresh, With Skin</Td>
-        <Td></Td>
-        <Td isNumeric>⚡NCCDB</Td>
-      </Tr>
-      <Tr>
-        <Td>Tomato Raw, Includes Cherry, Grape, Roma</Td>
-        <Td></Td>
-        <Td isNumeric>⚡NCCDB</Td>
-      </Tr>
-      <Tr>
-        <Td> Baby Spinach, Raw</Td>
-        <Td></Td>
-        <Td isNumeric>⚡NCCDB</Td>
-      </Tr>
-      <Tr>
-        <Td>Oatmeal, Regular or Quick Cooking, Dry</Td>
-        <Td></Td>
-        <Td isNumeric>⚡NCCDB</Td>
-      </Tr>
-      <Tr>
-        <Td>Carrots, Raw</Td>
-        <Td></Td>
-        <Td isNumeric>⚡NCCDB</Td>
-      </Tr>
-      <Tr>
-        <Td>Tap Water</Td>
-        <Td></Td>
-        <Td isNumeric>⚡NCCDB</Td>
-      </Tr>
-      <Tr>
-        <Td>Broccoli, Cooked From Fresh</Td>
-        <Td></Td>
-        <Td isNumeric>⚡NCCDB</Td>
-      </Tr>
-      <Tr>
-        <Td>Chia Seeds</Td>
-        <Td></Td>
-        <Td isNumeric>⚡NCCDB</Td>
-      </Tr>
-      <Tr>
-        <Td>Strawberries, Fresh</Td>
-        <Td></Td>
-        <Td isNumeric>⚡NCCDB</Td>
-      </Tr>
-      <Tr>
-        <Td>Walnuts</Td>
-        <Td></Td>
-        <Td isNumeric>⚡NCCDB</Td>
-      </Tr>
-      <Tr>
-        <Td>Blueberries, Fresh</Td>
-        <Td></Td>
-        <Td isNumeric>⚡NCCDB</Td>
-      </Tr>
-      <Tr>
-        <Td>Walnuts</Td>
-        <Td></Td>
-        <Td isNumeric>⚡NCCDB</Td>
-      </Tr>
-      <Tr>
-        <Td>Onion, White, Yellow or Red, Raw</Td>
-        <Td></Td>
-        <Td isNumeric>⚡NCCDB</Td>
-      </Tr>
-      <Tr>
-        <Td>Sweet Potato, Baked</Td>
-        <Td></Td>
-        <Td isNumeric>⚡NCCDB</Td>
-      </Tr>
-      <Tr>
-        <Td>Pepper, Sweet, Red, Raw</Td>
-        <Td></Td>
-        <Td isNumeric>⚡NCCDB</Td>
-      </Tr>
+      ))
+      }
       <Tr>
         <Td>Coffee, Prepared From Grounds</Td>
         <Td></Td>
