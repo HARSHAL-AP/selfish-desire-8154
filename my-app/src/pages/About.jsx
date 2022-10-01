@@ -1,7 +1,7 @@
 function Aboute(){
 
 return(
-    <h1>Aboute</h1>
+    <h1>404 Page not found..</h1>
 )
 
 }
