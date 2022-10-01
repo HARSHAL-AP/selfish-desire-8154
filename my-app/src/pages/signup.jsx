@@ -33,6 +33,7 @@ const initialstate={
 email:"",
 password:"",
 confirm_password:"",
+data:[],
 
 }
 
@@ -43,18 +44,18 @@ function Signup() {
   const {Gotohome}=useContext(AuthContext)
   const [show, setShow] =useState(false)
   const [user,setuser]=useState(initialstate)
- const {Users}=useContext(AuthContext)
+ const {signup}=useContext(AuthContext)
  const {setusers}=useContext(AuthContext)
 
   const handlechange=e=>{
     const {name,value}=e.target;
-    setuser({...user,[name]:value})
+    setuser({...user,[name]:value,data:[]})
     
   }
   const onSubmit=()=>{
     
-    setuser([...Users,user])
-    console.log(Users)
+   signup(user)
+    console.log(user)
   }
 
 
@@ -149,11 +150,11 @@ function Signup() {
           </Text>
           <Center color="black" gap="20px" alignContent="center" pt="25px">
             <Text color="black">Sex:</Text>
-            <Radio colorScheme="red" value="1" borderColor="black" >
-              Radio
+            <Radio colorScheme="red" name="male" value={user.male} borderColor="black" onChange={handlechange}>
+              male
             </Radio>
-            <Radio colorScheme="red" value="2" borderColor="black" >
-              Radio
+            <Radio colorScheme="red" name="female" value={user.female} borderColor="black" onChange={handlechange}>
+              female
             </Radio>
           </Center>
           <Center color="black" gap="20px" alignContent="center" pt="20px">
@@ -166,6 +167,7 @@ function Signup() {
               _placeholder={{ color: "grey" }}
               borderColor="black"
               focusBorderColor="black"
+              
             >
               <NumberInputField color="black" />
               <NumberInputStepper color="black">
@@ -180,6 +182,7 @@ function Signup() {
               borderColor="black"
               color="tomato"
               bg="white"
+              
             >
               <option name="January" value="Jan">
                 January
@@ -226,6 +229,7 @@ function Signup() {
               _placeholder={{ color: "grey" }}
               borderColor="black"
               focusBorderColor="black"
+              
             >
               <NumberInputField color="black" />
               <NumberInputStepper color="black">
@@ -243,6 +247,7 @@ function Signup() {
               borderColor="black"
               color="tomato"
               bg="white"
+              
             >
               <option name="1" value="1">
                 1
@@ -321,6 +326,7 @@ function Signup() {
               focusBorderColor="black"
               mt="8px"
               borderRadius="none"
+              
             />
             <Select
               size="md"
@@ -333,7 +339,7 @@ function Signup() {
                 Pounds
               </option>
               <option name="Kilogram" value="Pounds">
-                Pounds
+                Kilogram
               </option>
             </Select>
           </Center>
