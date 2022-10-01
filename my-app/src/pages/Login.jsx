@@ -32,8 +32,32 @@ import {useContext,useState,useEffect} from "react"
 
 import {AuthContext} from "../context/Appcontext"
 
+
+const initialstate={
+
+  email:"",
+  password:"",
+ }
 function Login(){
 const {Gotohome}=useContext(AuthContext)
+const [user,setuser]=useState(initialstate)
+const {Login}=useContext(AuthContext)
+const handlechange=e=>{
+  const {name,value}=e.target;
+  setuser({...user,[name]:value,data:[]})
+  
+}
+const onSubmit=()=>{
+  
+  Login(user)
+  console.log(user)
+}
+
+
+
+
+
+
 return (
     <div>
        <Container maxW="100%" bg="white" pb="50px"  pt="50px">
@@ -64,6 +88,9 @@ return (
             focusBorderColor="black"
             mt="30px"
             color="black"
+            name="email"
+            value={user.email}
+            onChange={handlechange}
           />
           <Input
             variant="outline"
@@ -75,8 +102,11 @@ return (
             focusBorderColor="black"
             mt="8px"
             color="black"
+            name="password"
+            value={user.password}
+            onChange={handlechange}
           />
-         <Center textAlign="center" border='1px' h="38px" borderColor='blackAlpha.400' rounded='md' mt="8px" bg="blackAlpha.400"><Text color="black">LOGIN</Text></Center>
+         <Center textAlign="center" border='1px' h="38px" borderColor='blackAlpha.400' rounded='md' mt="8px" bg="blackAlpha.400" onClick={onSubmit}><Text color="black">LOGIN</Text></Center>
          <Flex mt="30px"><Text color="black">Not a member?<Link color="red" href="/signup"> Sign Up Now</Link></Text></Flex>
 
         </Container>
