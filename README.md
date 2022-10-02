@@ -9,12 +9,12 @@
     <br>5)Website Neutrition traking system Section.
     <br>6)User friendly easy and secure payment System.
     
-  <p>Language used :</P
+  <p>Language used :</P>
   <p><ul><li>HTML-HyperText Markup Language</li>
   <li>CSS - Cascading Style Sheets</li>
-  <li>JavaScript</li></ul><p>
+  <li>JavaScript</li></ul>
   <h2>Chkra-UI<h2>
-  <h3>React.js</h3>
+  <h3>React.js</h3><p>
   <img src="/imges/home1.png"/>
       <hr>
   <img src="/imges/home2.png"/>
