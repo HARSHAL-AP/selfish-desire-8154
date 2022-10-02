@@ -38,19 +38,62 @@ import {
   Stack,
 } from "@chakra-ui/react";
 import Pronav from "../components/productpage/Productnav";
-import React, { useState } from "react";
+import React, { useState ,useContext,useEffect} from "react";
 import ReactCalendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import data from "../components/data";
 import Calendar from "react-calendar";
+import {AuthContext} from "../context/Appcontext"
+import axios from "axios";
+
+const getdatauser=(token)=>{
+return axios.get(`https://arcane-caverns-19574.herokuapp.com/api/posts/?email=${token}`)
+
+
+}
+const upadatefood=(ata,token)=>{
+
+return axios.patch(`https://arcane-caverns-19574.herokuapp.com/api/posts/?email=${token}`,{
+  food:ata,
+})
+
+
+
+}
+
+
+
+
+
+
 
 function Product() {
+  const {token}=useContext(AuthContext)
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [daata,setdata]=useState([])
   const [scrollBehavior, setScrollBehavior] = React.useState("inside");
   const [dateState, setDateState] = useState(new Date());
   const [foods,addfods]=useState([])
     
+useEffect(()=>{
+
+getdatauser(token).then((res)=>{
+  setdata(res.data.food)
+}).catch((err)=>{
+  console.log(err)
+  setdata([])
+})
+
+
+
+
+
+},[])
+
+
+
+
+
 
 const addtolist=(el)=>{
   addfods([...foods,el])
@@ -59,10 +102,12 @@ const addtolist=(el)=>{
    "foods":foods
    }
    setdata([...daata,newday])
-  console.log(daata)
+   update()
 
 }
-
+function update(){
+  upadatefood(daata,token)
+}
 
 
 

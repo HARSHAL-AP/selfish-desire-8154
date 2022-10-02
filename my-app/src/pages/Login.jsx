@@ -50,7 +50,7 @@ const handlechange=e=>{
 const onSubmit=()=>{
   
   Login(user)
-  console.log(user)
+ 
 }
 
 

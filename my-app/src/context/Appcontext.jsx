@@ -1,35 +1,68 @@
 import { useNavigate } from "react-router-dom";
-
 import { Children, createContext,useState } from "react";
+import axios from "axios"
+
+
+
+
+//onst checkuserpresence=(data)=>{
+// axios
+// .get(
+//   `https://arcane-caverns-19574.herokuapp.com/api/posts/?email=${data.email}`
+// )
+// .then(function (response) {
+//   console.log(response.data[0])
+// })
+// .catch(function (error) {
+//   console.log(error)
+// });
+//
+//
+//  
+// 
+//
+
+const getuser=(data)=>{
+   axios
+   .get(
+     `https://arcane-caverns-19574.herokuapp.com/api/posts/?email=${data.email}`
+   )
+   .then(function (response) {
+     console.log(response.data[0])
+   })
+   .catch(function (error) {
+    console.log(error)
+   });
+
+}
+
+
 
 export const AuthContext=createContext();
 
 export const AuthContextProvider=({children})=>{
     const [isAuth, setIsAuth] =useState(false);
-    const [token, setToken] =useState({});
+    const [token, setToken] =useState("");
     const navigate = useNavigate();
     const [Users,setusers]=useState([])
 
     const Login=(data)=>{
-     if(Users.length===0){
-        alert("Acount dosen't exist Please create acount....")
-        navigate("/signup")
-     }   
-     let bag=false
-     for(let i=0;i<Users.length;i++){
-        if(Users[i].email===data.email&&Users[i].password===data.password){
-            bag=true;
-            break;
-        }
-     } 
-     if(bag){
-          alert("Login Succsesfull..!")
-          setIsAuth(true)
-          navigate("/product")
-     }
-     else{
-        alert("Incorrect Credentials..!")
-     }
+      let papa=getuser(data)
+      if(papa!==undefined){
+         alert("user dident exist please signup...")
+
+      }
+      else{
+         alert("login sucsessfull...")
+         setIsAuth(true)
+         setToken("papa.email")
+         navigate("/product")
+      }
+        
+      
+
+
+
     }
 
    const Logout=()=>{
@@ -41,27 +74,26 @@ export const AuthContextProvider=({children})=>{
    navigate("/")
 
   }
-  const signup=(data)=>{
-   let bag=false
-     for(let i=0;i<Users.length;i++){
-        if(Users[i].email===data.email){
-            bag=true;
-            break;
-        }
-     } 
-     if(bag){
-          alert("User allrady exist with this email please logn to continew")
-          navigate("/login")
-     }
-     else{
-      setusers([...Users,data])
-      console.log(Users)
-      alert("User registration succsesfull...")
-          navigate("/login")
-      
-     }
+  const signup=async(data)=>{
    
-  }
+  
+      axios({
+              method: "post",
+              url: "https://arcane-caverns-19574.herokuapp.com/api/posts",
+              data: {
+                id: data.email,
+                email: data.email,
+                password: data.password,
+                food:[],
+              }
+            });
+            alert("User registration succsesfull...")
+                   navigate("/login")
+              
+
+     
+   
+}
 
 
 

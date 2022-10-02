@@ -55,7 +55,7 @@ function Signup() {
   const onSubmit=()=>{
     
    signup(user)
-    console.log(user)
+    
   }
 
 
