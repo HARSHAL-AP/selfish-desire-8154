@@ -99,7 +99,7 @@ export const AuthContextProvider=({children})=>{
 
 
 
-let value={isAuth,token,Logout,Gotohome,Login,Users,setusers,signup}
+let value={isAuth,token,Logout,Gotohome,Login,Users,setusers,signup,setIsAuth}
 return <AuthContext.Provider value={value}>
     {children}
 </AuthContext.Provider>
