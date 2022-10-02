@@ -17,6 +17,7 @@
   <li>CSS - Cascading Style Sheets</li>
   <li>JavaScript</li></ul>
   <p>
+   <h3>Home page</h3>
   <img src="/imges/home1.png"/>
       <hr>
   <img src="/imges/home2.png"/>
