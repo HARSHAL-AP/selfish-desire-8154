@@ -47,3 +47,12 @@
 
 
 export default data
+
+
+
+const oAuthofapi="3f391f9bc5a4443ca5c483ef09da3b28"
+const api_clientid="cad4d39af9154f6280210e66ac4be65a"
+
+let key="cad4d39af9154f6280210e66ac4be65a"
+
+let counsumernsecte="e7c597e5f3974a8aa36df18daf2c9e2d"
