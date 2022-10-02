@@ -53,35 +53,34 @@ return (
 
    </Box>
    <Box w="25%" h="100%" >
-    <Text mt="50px" fontSize="22px" fontweight="bold">Cronometer</Text>
-    <Text mt="20px" fontSize="18px">For Individuals</Text>
-    <Text mt="20px" fontSize="18px">For Professionals</Text>
-    <Text mt="20px" fontSize="18px">Privacy</Text>
-    <Text mt="20px" fontSize="18px">Terms</Text>
+    <Text mt="50px" color="white"  fontSize="22px" fontweight="bold">Cronometer</Text>
+    <Text mt="20px" color="white" fontSize="18px">For Individuals</Text>
+    <Text mt="20px" color="white" fontSize="18px">For Professionals</Text>
+    <Text mt="20px" color="white" fontSize="18px">Privacy</Text>
+    <Text mt="20px" color="white" fontSize="18px">Terms</Text>
   
    </Box>
    <Box w="25%" h="100%" >
-   <Text mt="50px" fontSize="22px" fontweight="bold">The Company</Text>
-    <Text mt="20px" fontSize="18px">About Us
-   </Text>
-    <Text mt="20px" fontSize="18px">Crono Blog</Text>
-    <Text mt="20px" fontSize="18px">Crono Forums</Text>
-    <Text mt="20px" fontSize="18px">Jobs</Text>
-    <Text mt="20px" fontSize="18px">Support</Text>
+   <Text mt="50px"  color="white"  fontSize="22px" fontweight="bold">The Company</Text>
+    <Text mt="20px" color="white"  fontSize="18px">About Us</Text>
+    <Text mt="20px" color="white" fontSize="18px">Crono Blog</Text>
+    <Text mt="20px" color="white" fontSize="18px">Crono Forums</Text>
+    <Text mt="20px" color="white" fontSize="18px">Jobs</Text>
+    <Text mt="20px" color="white" fontSize="18px">Support</Text>
    </Box>
 
    <Box w="25%" h="100%" >
-    <Text mt="50px" fontSize="22px" fontweight="bold">Partners & Affiliates</Text>
-    <Text mt="20px" fontSize="18px">Affilate Program</Text>
-    <Text mt="20px" fontSize="18px">Media Kit</Text>
+    <Text mt="50px" color="white" fontSize="22px" fontweight="bold">Partners & Affiliates</Text>
+    <Text mt="20px" color="white" fontSize="18px">Affilate Program</Text>
+    <Text mt="20px" color="white" fontSize="18px">Media Kit</Text>
     
   
    </Box>
 
 
  </Flex>
- <Text textAlign="center" fontSize="18px">Copyright © 2011-2022</Text>
- <Text textAlign="center" fontSize="18px">All rights reserved</Text>
+ <Text textAlign="center" color="white" fontSize="18px">Copyright © 2011-2022</Text>
+ <Text textAlign="center" color="white" fontSize="18px">All rights reserved</Text>
 
  </Container>
  

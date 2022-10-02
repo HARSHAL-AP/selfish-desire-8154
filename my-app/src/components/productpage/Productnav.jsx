@@ -27,12 +27,12 @@ return (
           pl="20px"
           alt="logo"
   />
-<Button color="tomato" ml="250px" fontSize="18px">Diary</Button>
-<Button color="tomato" fontSize="18px">Trends</Button>
-<Button color="tomato" fontSize="18px">Foods</Button>
-<Button color="tomato" fontSize="18px">Setting</Button>
-<Button color="tomato" fontSize="18px">Plans</Button>
-<Button color="tomato" fontSize="18px">Help</Button>
+<Button color="tomato" bg="white" ml="250px" fontSize="18px">Diary</Button>
+<Button color="tomato" bg="white" fontSize="18px">Trends</Button>
+<Button color="tomato" bg="white" fontSize="18px">Foods</Button>
+<Button color="tomato" bg="white" fontSize="18px">Setting</Button>
+<Button color="tomato" bg="white" fontSize="18px">Plans</Button>
+<Button color="tomato" bg="white" fontSize="18px">Help</Button>
 
 
  </Flex>
