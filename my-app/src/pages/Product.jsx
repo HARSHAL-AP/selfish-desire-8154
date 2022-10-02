@@ -46,9 +46,26 @@ import Calendar from "react-calendar";
 
 function Product() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { isOpe, onOpe, onClos } = useDisclosure();
+  const [daata,setdata]=useState([])
   const [scrollBehavior, setScrollBehavior] = React.useState("inside");
   const [dateState, setDateState] = useState(new Date());
+  const [foods,addfods]=useState([])
+    
+
+const addtolist=(el)=>{
+  addfods([...foods,el])
+   let newday={
+   "date":dateState,
+   "foods":foods
+   }
+   setdata([...daata,newday])
+  console.log(daata)
+
+}
+
+
+
+
   const changeDate = (e) => {
     setDateState(e);
     console.log(dateState);
@@ -63,11 +80,7 @@ function Product() {
             <Calendar
               value={dateState}
               onChange={changeDate}
-              defaultActiveStartDate={
-                new Date(
-                  "Tue Mar 10 2020 00:00:00 GMT+0100 (Central European Standard Time)"
-                )
-              }
+              
             />
           </Box>
 
@@ -95,7 +108,7 @@ function Product() {
                         </Thead>
                         <Tbody>
                           {data.map((el) => (
-                            <Tr>
+                            <Tr onClick={()=>addtolist(el)}>
                               <Td>{el.Name}</Td>
                               <Td></Td>
                               <Td isNumeric>⚡NCCDB</Td>
@@ -142,14 +155,18 @@ function Product() {
                       <Th isNumeric color="blackAlpha.800">
                         Energu(kcal)
                       </Th>
+                      
                     </Tr>
                   </Thead>
                   <Tbody size="sm">
-                    <Tr>
-                      <Td>inches</Td>
-                      <Td>millimetres (mm)</Td>
-                      <Td isNumeric>25.4</Td>
-                    </Tr>
+                  {foods.map((el) => (
+                            <Tr >
+                              <Td>{el.Name}</Td>
+                              <Td>1</Td>
+                              <Td isNumeric>{el.cal}</Td>
+                              
+                            </Tr>
+                          ))}
                   </Tbody>
                 </Table>
               </TableContainer>
@@ -166,22 +183,25 @@ function Product() {
               <Flex W="100%" h="150px">
                 <Center w="50%" gap="20px" name="Energy Summary" color="black">
                   <Box fontSize="14px">
-                    <CircularProgress value={40} color="green.400" size="100px">
+                    <CircularProgress value={60} color="green.400" size="100px">
                       <CircularProgressLabel color="green.400">
-                        40%
+                      <Text>1222</Text>
+                        <Text fontSize="12px" fontWeight="bold">kcal</Text>
                       </CircularProgressLabel>
                     </CircularProgress>
                   </Box>
                   <Box>
-                    <CircularProgress value={40} color="red.400" size="100px">
-                      <CircularProgressLabel color="red.400">
-                        40%
+                    <CircularProgress value={20} color="red.400" size="100px">
+                      <CircularProgressLabel color="red.400" >
+                        <Text>2262</Text>
+                        <Text fontSize="12px" fontWeight="bold">kcal</Text>
                       </CircularProgressLabel>
                     </CircularProgress>
                   </Box>
                   <Box>
-                    <Box boxShadow="dark-lg" p="6" rounded="md" bg="#9279bb">
-                      Dark lg
+                    <Box boxShadow="dark-lg" p="6" rounded="md" bg="#9279bb" textAlign="center">
+                     <Text fontSize="14px" color="white" fontWeight="bold">2262</Text>
+                     <Text fontSize="8px" fontWeight="bold">Calories Remaining</Text>
                     </Box>
                   </Box>
                 </Center>
