@@ -13,8 +13,11 @@ import {
     GridItem,
   } from "@chakra-ui/react";
 
+function Pronav({logout}){
+ 
 
-function Pronav(){
+
+
 
 return (
 
@@ -33,7 +36,7 @@ return (
 <Button color="tomato" bg="white" fontSize="18px">Setting</Button>
 <Button color="tomato" bg="white" fontSize="18px">Plans</Button>
 <Button color="tomato" bg="white" fontSize="18px">Help</Button>
-
+<Button color="red" bg="yellow" fontSize="18px" onClick={logout}>Logout</Button>
 
  </Flex>
  

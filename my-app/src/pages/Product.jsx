@@ -38,78 +38,76 @@ import {
   Stack,
 } from "@chakra-ui/react";
 import Pronav from "../components/productpage/Productnav";
-import React, { useState ,useContext,useEffect} from "react";
+import React, { useState, useContext, useEffect } from "react";
 import ReactCalendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import data from "../components/data";
 import Calendar from "react-calendar";
-import {AuthContext} from "../context/Appcontext"
+import { AuthContext } from "../context/Appcontext";
 import axios from "axios";
 
-const getdatauser=(token)=>{
-return axios.get(`https://arcane-caverns-19574.herokuapp.com/api/posts/?email=${token}`)
-
-
-}
-const upadatefood=(ata,token)=>{
-
-return axios.patch(`https://arcane-caverns-19574.herokuapp.com/api/posts/?email=${token}`,{
-  food:ata,
-})
-
-
-
-}
-
-
-
-
-
-
+const getdatauser = (token) => {
+  return axios.get(
+    `https://arcane-caverns-19574.herokuapp.com/api/posts/?email=${token}`
+  );
+};
+const upadatefood = (ata, token) => {
+  return axios.patch(
+    `https://arcane-caverns-19574.herokuapp.com/api/posts/?email=${token}`,
+    {
+      food: ata,
+    }
+  );
+};
 
 function Product() {
-  const {token}=useContext(AuthContext)
+  const { token,Logout} = useContext(AuthContext);
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [daata,setdata]=useState([])
+  const [daata, setdata] = useState([]);
   const [scrollBehavior, setScrollBehavior] = React.useState("inside");
   const [dateState, setDateState] = useState(new Date());
-  const [foods,addfods]=useState([])
-    
-useEffect(()=>{
-
-getdatauser(token).then((res)=>{
-  setdata(res.data.food)
-}).catch((err)=>{
-  console.log(err)
-  setdata([])
-})
+  const [foods, addfods] = useState([]);
+  const [Prote,setprotein]=useState(0)
+  const [carbs,setcarbs]=useState(0)
+  const [fat,setfat]=useState(0)
+  const [cal,setcal]=useState(0)
 
 
-
-
-
-},[])
-
-
-
-
-
-
-const addtolist=(el)=>{
-  addfods([...foods,el])
-   let newday={
-   "date":dateState,
-   "foods":foods
-   }
-   setdata([...daata,newday])
-   update()
-
-}
-function update(){
-  upadatefood(daata,token)
+const loagout=()=>{
+Logout()
 }
 
 
+
+  useEffect(() => {
+    getdatauser(token)
+      .then((res) => {
+        setdata(res.data.food);
+      })
+      .catch((err) => {
+        console.log(err);
+        setdata([]);
+      });
+  }, []);
+
+  const addtolist = (el) => {
+    addfods([...foods, el]);
+    let newday = {
+      date: dateState,
+      foods: foods,
+    };
+    setcal(cal+el.cal)
+    setprotein(Prote+el.Protein)
+    setcarbs(carbs+el.Netcarbs)
+    setfat(fat+el.Fat)
+
+
+    setdata([...daata, newday]);
+    update();
+  };
+  function update() {
+    upadatefood(daata, token);
+  }
 
   const changeDate = (e) => {
     setDateState(e);
@@ -118,20 +116,16 @@ function update(){
   const btnRef = React.useRef(null);
   return (
     <div>
-      <Pronav />
+      <Pronav logout={loagout}/>
       <Container maxW="100%" h="1000px" bg="white">
         <Container maxW="1200px" h="400px" display="flex">
           <Box w="30%" h="300px" color="black" mt="25px" textAlign="center">
-            <Calendar
-              value={dateState}
-              onChange={changeDate}
-              
-            />
+            <Calendar value={dateState} onChange={changeDate} />
           </Box>
 
           <Box w="70%" h="300px" mt="25px">
             <Flex color="black">
-              <Button onClick={onOpen}>🍎ADD FOOD</Button>
+              <Button onClick={onOpen} bg="white">🍎ADD FOOD</Button>
               <Modal
                 isOpen={isOpen}
                 onClose={onClose}
@@ -153,7 +147,7 @@ function update(){
                         </Thead>
                         <Tbody>
                           {data.map((el) => (
-                            <Tr onClick={()=>addtolist(el)}>
+                            <Tr onClick={() => addtolist(el)}>
                               <Td>{el.Name}</Td>
                               <Td></Td>
                               <Td isNumeric>⚡NCCDB</Td>
@@ -176,10 +170,10 @@ function update(){
                   </ModalFooter>
                 </ModalContent>
               </Modal>
-              <Button>🤸‍♂️ADD EXERCISE</Button>
+              <Button bg="white">🤸‍♂️ADD EXERCISE</Button>
 
-              <Button>❤️ADD BIOMETRIC</Button>
-              <Button>📒ADD NOTE</Button>
+              <Button bg="white">❤️ADD BIOMETRIC</Button>
+              <Button bg="white">📒ADD NOTE</Button>
             </Flex>
             <Container
               maxW="95%"
@@ -200,18 +194,16 @@ function update(){
                       <Th isNumeric color="blackAlpha.800">
                         Energu(kcal)
                       </Th>
-                      
                     </Tr>
                   </Thead>
                   <Tbody size="sm">
-                  {foods.map((el) => (
-                            <Tr >
-                              <Td>{el.Name}</Td>
-                              <Td>1</Td>
-                              <Td isNumeric>{el.cal}</Td>
-                              
-                            </Tr>
-                          ))}
+                    {foods.map((el) => (
+                      <Tr>
+                        <Td>{el.Name}</Td>
+                        <Td>1</Td>
+                        <Td isNumeric>{el.cal}</Td>
+                      </Tr>
+                    ))}
                   </Tbody>
                 </Table>
               </TableContainer>
@@ -228,31 +220,45 @@ function update(){
               <Flex W="100%" h="150px">
                 <Center w="50%" gap="20px" name="Energy Summary" color="black">
                   <Box fontSize="14px">
-                    <CircularProgress value={60} color="green.400" size="100px">
+                    <CircularProgress value={cal*0.044} color="green.400" size="100px">
                       <CircularProgressLabel color="green.400">
-                      <Text>1222</Text>
-                        <Text fontSize="12px" fontWeight="bold">kcal</Text>
+                        <Text>{cal}</Text>
+                        <Text fontSize="12px" fontWeight="bold">
+                          kcal
+                        </Text>
                       </CircularProgressLabel>
                     </CircularProgress>
                   </Box>
                   <Box>
-                    <CircularProgress value={20} color="red.400" size="100px">
-                      <CircularProgressLabel color="red.400" >
+                    <CircularProgress value={100} color="red.400" size="100px">
+                      <CircularProgressLabel color="red.400">
                         <Text>2262</Text>
-                        <Text fontSize="12px" fontWeight="bold">kcal</Text>
+                        <Text fontSize="12px" fontWeight="bold">
+                          kcal
+                        </Text>
                       </CircularProgressLabel>
                     </CircularProgress>
                   </Box>
                   <Box>
-                    <Box boxShadow="dark-lg" p="6" rounded="md" bg="#9279bb" textAlign="center">
-                     <Text fontSize="14px" color="white" fontWeight="bold">2262</Text>
-                     <Text fontSize="8px" fontWeight="bold">Calories Remaining</Text>
+                    <Box
+                      boxShadow="dark-lg"
+                      p="6"
+                      rounded="md"
+                      bg="#9279bb"
+                      textAlign="center"
+                    >
+                      <Text fontSize="20px" color="white" fontWeight="bold">
+                        2262
+                      </Text>
+                      <Text fontSize="8px" fontWeight="bold">
+                        Calories Remaining
+                      </Text>
                     </Box>
                   </Box>
                 </Center>
                 <Box w="10%">
                   <Text color="black" fontSize="16px" mt="2px">
-                   Energy
+                    Energy
                   </Text>
                   <Text color="black" fontSize="16px" mt="2px">
                     Proteins
@@ -263,27 +269,41 @@ function update(){
                   <Text color="black" fontSize="16px" mt="2px">
                     Fats
                   </Text>
-                  
                 </Box>
                 <Box w="30%">
                   <Stack spacing={3}>
                     <Box color="black" mt="5px">
-                      
-                      <Progress bg="grey" size="lg" value={40} colorScheme="red"/>
+                      <Progress
+                        bg="grey"
+                        size="lg"
+                        value={cal*0.044}
+                        colorScheme="red"
+                      />
                     </Box>
                     <Box color="black">
-                      
-                      <Progress bg="grey" size="lg" value={40} colorScheme="green"/>
+                      <Progress
+                        bg="grey"
+                        size="lg"
+                        value={Prote}
+                        colorScheme="green"
+                      />
                     </Box>
                     <Box color="black">
-                     
-                      <Progress bg="grey" size="lg" value={40} colorScheme="blue"/>
+                      <Progress
+                        bg="grey"
+                        size="lg"
+                        value={fat}
+                        colorScheme="blue"
+                      />
                     </Box>
                     <Box color="black">
-                      
-                      <Progress bg="grey" size="lg" value={40} colorScheme="pink"/>
+                      <Progress
+                        bg="grey"
+                        size="lg"
+                        value={carbs}
+                        colorScheme="pink"
+                      />
                     </Box>
-                    
                   </Stack>
                 </Box>
               </Flex>
@@ -308,71 +328,81 @@ function update(){
               p="1"
               rounded="md"
             >
-            <Flex color="black" fontSize="12px" pl="12px">Highlighted Nutrients</Flex>
-             <Center>
-             <Box fontSize="14px">
-                    <CircularProgress value={40} color="#F6E05E" size="100px">
-                      <CircularProgressLabel color="green.400">
-                        40%
-                      </CircularProgressLabel>
-                    </CircularProgress>
-                  </Box>
-                  <Box fontSize="14px">
-                    <CircularProgress value={40} color="#F6E05E" size="100px">
-                      <CircularProgressLabel color="green.400">
-                        40%
-                      </CircularProgressLabel>
-                    </CircularProgress>
-                  </Box>
-                  <Box fontSize="14px">
-                    <CircularProgress value={40} color="#F6E05E" size="100px">
-                      <CircularProgressLabel color="green.400">
-                        40%
-                      </CircularProgressLabel>
-                    </CircularProgress>
-                  </Box>
-                  <Box fontSize="14px">
-                    <CircularProgress value={40} color="green.400" size="100px">
-                      <CircularProgressLabel color="green.400">
-                        40%
-                      </CircularProgressLabel>
-                    </CircularProgress>
-                  </Box>
-                  <Box fontSize="14px">
-                    <CircularProgress value={40} color="#F6E05E" size="100px">
-                      <CircularProgressLabel color="green.400">
-                        40%
-                      </CircularProgressLabel>
-                    </CircularProgress>
-                  </Box>
-                  <Box fontSize="14px">
-                    <CircularProgress value={40} color="#F6E05E" size="100px">
-                      <CircularProgressLabel color="green.400">
-                        40%
-                      </CircularProgressLabel>
-                    </CircularProgress>
-                  </Box>
-                  <Box fontSize="14px">
-                    <CircularProgress value={40} color="#F6E05E" size="100px">
-                      <CircularProgressLabel color="green.400">
-                        40%
-                      </CircularProgressLabel>
-                    </CircularProgress>
-                  </Box>
-                  
-
-
-
-
-
-             </Center>
-
-
-
-
-
-
-
+              <Flex color="black" fontSize="12px" pl="12px">
+                Highlighted Nutrients
+              </Flex>
+              <Center>
+                <Box fontSize="14px">
+                  <CircularProgress value={Math.floor((Math.random() * 100) + 1)} color="red" size="100px">
+                    <CircularProgressLabel color="green.400">
+                    <Text>{Math.floor((Math.random() * 100) + 1)}</Text>
+                        <Text fontSize="12px" fontWeight="bold">
+                         vit-A
+                        </Text>
+                    </CircularProgressLabel>
+                  </CircularProgress>
+                </Box>
+                <Box fontSize="14px">
+                  <CircularProgress value={Math.floor((Math.random() * 100) + 1)} color="hsl(179 62% 64% / 1)" size="100px">
+                    <CircularProgressLabel color="green.400">
+                    <Text>{Math.floor((Math.random() * 100) + 1)}</Text>
+                        <Text fontSize="12px" fontWeight="bold">
+                          Vit-B
+                        </Text>
+                    </CircularProgressLabel>
+                  </CircularProgress>
+                </Box>
+                <Box fontSize="14px">
+                  <CircularProgress value={Math.floor((Math.random() * 100) + 1)} color="blue" size="100px">
+                    <CircularProgressLabel color="green.400">
+                    <Text>{Math.floor((Math.random() * 100) + 1)}</Text>
+                        <Text fontSize="12px" fontWeight="bold">
+                          Vit-C
+                        </Text>
+                    </CircularProgressLabel>
+                  </CircularProgress>
+                </Box>
+                <Box fontSize="14px">
+                  <CircularProgress value={Math.floor((Math.random() * 100) + 1)} color="green" size="100px">
+                    <CircularProgressLabel color="green.400">
+                    <Text>{Math.floor((Math.random() * 100) + 1)}</Text>
+                        <Text fontSize="12px" fontWeight="bold">
+                          Vit-D
+                        </Text>
+                    </CircularProgressLabel>
+                  </CircularProgress>
+                </Box>
+                <Box fontSize="14px">
+                  <CircularProgress value={Math.floor((Math.random() * 100) + 1)} color="hsl(291deg 47% 51%)" size="100px">
+                    <CircularProgressLabel color="green.400">
+                    <Text>{Math.floor((Math.random() * 100) + 1)}</Text>
+                        <Text fontSize="12px" fontWeight="bold">
+                          Iron
+                        </Text>
+                    </CircularProgressLabel>
+                  </CircularProgress>
+                </Box>
+                <Box fontSize="14px">
+                  <CircularProgress value={Math.floor((Math.random() * 100) + 1)} color="hsl(30deg 100% 49%)" size="100px">
+                    <CircularProgressLabel color="green.400">
+                    <Text>{Math.floor((Math.random() * 100) + 1)}</Text>
+                        <Text fontSize="12px" fontWeight="bold">
+                          Folic Acid
+                        </Text>
+                    </CircularProgressLabel>
+                  </CircularProgress>
+                </Box>
+                <Box fontSize="14px">
+                  <CircularProgress value={Math.floor((Math.random() * 100) + 1)} color="#F6E05E" size="100px">
+                    <CircularProgressLabel color="green.400">
+                    <Text>{Math.floor((Math.random() * 100) + 1)}</Text>
+                        <Text fontSize="12px" fontWeight="bold">
+                          Potassium
+                        </Text>
+                    </CircularProgressLabel>
+                  </CircularProgress>
+                </Box>
+              </Center>
             </Container>
           </Box>
         </Container>

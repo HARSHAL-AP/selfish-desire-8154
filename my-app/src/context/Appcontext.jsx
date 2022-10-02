@@ -67,6 +67,7 @@ export const AuthContextProvider=({children})=>{
 
    const Logout=()=>{
     setIsAuth(false)
+    navigate("/")
    }
   
   const Gotohome=()=>{
