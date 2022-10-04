@@ -9,12 +9,15 @@
     <br>5)Website Neutrition traking system Section.
     <br>6)User friendly easy and secure payment System.
     
-  <p>Language used :</P
-  <p><ul><li>HTML-HyperText Markup Language</li>
+  <p>Language used :</P>
+  <p><ul>
+  <li>React.js</li>
+  <li>Chakra-UI</li>
+  <li>HTML-HyperText Markup Language</li>
   <li>CSS - Cascading Style Sheets</li>
-  <li>JavaScript</li></ul><p>
-  <h2>Chkra-UI<h2>
-  <h3>React.js</h3>
+  <li>JavaScript</li></ul>
+  <p>
+   <h3>Home page</h3>
   <img src="/imges/home1.png"/>
       <hr>
   <img src="/imges/home2.png"/>
@@ -53,10 +56,6 @@
       <li>Email: apsundeharshal129@gmail.com</li>
       <li>LinkedIn: https://www.linkedin.com/in/harshal-apsunde-42b40b236</li></ul>
 
-  <h4>Juhi Diwase</h4>
-   <ul><li>Github: juhidiwase99</li>
-     <li>Github Link: https://github.com/juhidiwase99</li>
-     <li>Email:jdiwase2017@gmail.com</li>
-     <li>LinkedIn: https://www.linkedin.com/feed/?trk=msn-top-in</li></ul>  
+  
       
   </html>
